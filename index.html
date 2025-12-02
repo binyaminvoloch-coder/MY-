@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby Monitor - מבצע מיוחד</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100%;
+      width: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      min-height: 100%;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      width: 100%;
+      overflow: hidden;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      padding: 32px;
+      text-align: center;
+      color: white;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .main-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .product-image {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .product-image img {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease;
+    }
+
+    .product-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .product-name {
+      font-size: 24px;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 24px 0;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: #f7fafc;
+      border-radius: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateX(-4px);
+    }
+
+    .feature-icon {
+      font-size: 24px;
+    }
+
+    .feature-text {
+      font-size: 14px;
+      color: #4a5568;
+      font-weight: 500;
+    }
+
+    .price-section {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      padding: 32px;
+      border-radius: 16px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .price-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .current-price {
+      font-size: 48px;
+      font-weight: 800;
+      color: #c53030;
+    }
+
+    .original-price {
+      font-size: 24px;
+      color: #718096;
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      display: inline-block;
+      background: #c53030;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 18px;
+      font-weight: 700;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 20px 16px;
+      }
+
+      .content {
+        padding: 24px;
+      }
+
+      .main-title {
+        font-size: 22px;
+      }
+
+      .product-name {
+        font-size: 20px;
+      }
+
+      .current-price {
+        font-size: 36px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="card">
+    <div class="header">
+     <div class="badge">
+      ⭐ מבצע מוגבל בזמן
+     </div>
+     <h1 class="main-title" id="mainTitle">המוצרים הנמכרים ביותר במבצע!</h1>
+    </div>
+    <div class="content">
+     <div class="product-image"><a href="https://s.click.aliexpress.com/e/_c4FvkyCl" target="_blank" rel="noopener noreferrer"> <img src="https://ae01.alicdn.com/kf/Sa688591905bd4605b02e6e950e1b7b99k.jpg" alt="בייבי מוניטור" onerror="this.src=''; this.alt='תמונה לא נטענה'; this.style.display='none';"> </a>
+     </div>
+     <h2 class="product-name" id="productName">בייבי מוניטור VB603 אלחוטי עם מסך 3.2 אינץ', אודיו דו כיווני, ראיית לילה ומצלמת אבטחה</h2>
+     <div class="features">
+      <div class="feature-item"><span class="feature-icon">📺</span> <span class="feature-text">מסך צבעוני 3.2 אינץ' ברור וחד</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">🔊</span> <span class="feature-text">אודיו דו כיווני - דברו עם התינוק</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">🌙</span> <span class="feature-text">ראיית לילה עד 5 מטר</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">📡</span> <span class="feature-text">טווח של 50 מטר בבית, 260 מטר בחוץ</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">🔋</span> <span class="feature-text">סוללה נטענת 1000mAh - שעות של שימוש</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">🌡️</span> <span class="feature-text">מד טמפרטורה בחדר התינוק</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">🎵</span> <span class="feature-text">מנגינות מרגיעות לתינוק</span>
+      </div>
+      <div class="feature-item"><span class="feature-icon">💾</span> <span class="feature-text">חיסכון באנרגיה אוטומטי</span>
+      </div>
+     </div>
+     <div class="price-section">
+      <div class="price-container"><span class="current-price" id="currentPrice">₪124.61</span> <span class="original-price" id="originalPrice">₪268.85</span>
+      </div>
+      <div class="discount-badge" id="discountBadge">
+       הנחה של 54%
+      </div>
+     </div><a href="https://s.click.aliexpress.com/e/_c33pXSP7" target="_blank" rel="noopener noreferrer" class="cta-button" id="ctaButton"> 🛒 לחץ וקנה עכשיו! </a>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: "המוצרים הנמכרים ביותר במבצע!",
+      product_name: "בייבי מוניטור VB603 אלחוטי עם מסך 3.2 אינץ', אודיו דו כיווני, ראיית לילה ומצלמת אבטחה",
+      current_price: "₪124.61",
+      original_price: "₪268.85",
+      discount_text: "הנחה של 54%",
+      cta_button: "🛒 לחץ וקנה עכשיו!",
+      background_color: "#667eea",
+      header_color: "#f093fb",
+      price_bg_color: "#ffecd2",
+      button_color: "#667eea",
+      text_color: "#2d3748",
+      font_family: "Segoe UI",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'Tahoma, Geneva, Verdana, sans-serif';
+      
+      document.getElementById('mainTitle').textContent = config.main_title || defaultConfig.main_title;
+      document.getElementById('productName').textContent = config.product_name || defaultConfig.product_name;
+      document.getElementById('currentPrice').textContent = config.current_price || defaultConfig.current_price;
+      document.getElementById('originalPrice').textContent = config.original_price || defaultConfig.original_price;
+      document.getElementById('discountBadge').textContent = config.discount_text || defaultConfig.discount_text;
+      document.getElementById('ctaButton').textContent = config.cta_button || defaultConfig.cta_button;
+
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.body.style.fontSize = `${baseSize}px`;
+      
+      document.querySelector('.main-title').style.fontSize = `${baseSize * 1.75}px`;
+      document.querySelector('.product-name').style.fontSize = `${baseSize * 1.5}px`;
+      document.querySelector('.current-price').style.fontSize = `${baseSize * 3}px`;
+      document.querySelector('.original-price').style.fontSize = `${baseSize * 1.5}px`;
+      document.querySelector('.cta-button').style.fontSize = `${baseSize * 1.375}px`;
+      document.querySelector('.feature-text').style.fontSize = `${baseSize * 0.875}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+                document.body.style.background = `linear-gradient(135deg, ${value} 0%, #764ba2 100%)`;
+              }
+            }
+          },
+          {
+            get: () => config.header_color || defaultConfig.header_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.header_color = value;
+                window.elementSdk.setConfig({ header_color: value });
+                document.querySelector('.header').style.background = `linear-gradient(135deg, ${value} 0%, #f5576c 100%)`;
+              }
+            }
+          },
+          {
+            get: () => config.price_bg_color || defaultConfig.price_bg_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.price_bg_color = value;
+                window.elementSdk.setConfig({ price_bg_color: value });
+                document.querySelector('.price-section').style.background = `linear-gradient(135deg, ${value} 0%, #fcb69f 100%)`;
+              }
+            }
+          },
+          {
+            get: () => config.button_color || defaultConfig.button_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.button_color = value;
+                window.elementSdk.setConfig({ button_color: value });
+                document.querySelector('.cta-button').style.background = `linear-gradient(135deg, ${value} 0%, #764ba2 100%)`;
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+                document.querySelector('.product-name').style.color = value;
+                document.querySelectorAll('.feature-text').forEach(el => el.style.color = value);
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["product_name", config.product_name || defaultConfig.product_name],
+        ["current_price", config.current_price || defaultConfig.current_price],
+        ["original_price", config.original_price || defaultConfig.original_price],
+        ["discount_text", config.discount_text || defaultConfig.discount_text],
+        ["cta_button", config.cta_button || defaultConfig.cta_button]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a6d14e392fe7d95',t:'MTc2NDUzNDQwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
