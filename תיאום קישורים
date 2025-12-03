@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>כל דפי הנחיתה שלי</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #f4f4f4; }
+        h1 { color: #333; margin-bottom: 40px; }
+        .links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        a { 
+            display: block; padding: 20px 30px; background: #667eea; color: white; 
+            text-decoration: none; border-radius: 12px; font-size: 1.3rem; min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        a:hover { background: #764ba2; transform: scale(1.05); transition: all 0.3s; }
+    </style>
+</head>
+<body>
+    <h1>בחר דף נחיתה</h1>
+    <div class="links">
+        <a href="/site1/">דף נחיתה 1</a>
+        <a href="/site2/">דף נחיתה 2</a>
+        <a href="/landing3/">דף נחיתה 3</a>
+        <!-- תוסיף כאן עוד קישורים לפי שמות התיקיות שלך -->
+    </div>
+</body>
+</html>
