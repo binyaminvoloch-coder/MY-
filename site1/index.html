@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>דף נחיתה – צור איתנו קשר</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      background: white;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    .form-container {
+      padding: 40px 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e1e1e1;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+    }
+
+    .row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .row .form-group {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+    }
+
+    .success-message {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 20px;
+      border: 1px solid #c3e6cb;
+    }
+
+    @media (max-width: 480px) {
+      .row {
+        flex-direction: column;
+      }
+      .header h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>מוכן להתחיל?</h1>
+      <p>השאר פרטים ונחזור אליך תוך 24 שעות</p>
+    </div>
+
+    <div class="form-container">
+      <form id="landingForm">
+        <div class="row">
+          <div class="form-group">
+            <label for="firstName">שם פרטי *</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">שם משפחה *</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">טלפון *</label>
+          <input type="tel" id="phone" name="phone" placeholder="05X-XXXXXXX" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">אימייל *</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <button type="submit">שלח פרטים</button>
+      </form>
+
+      <div id="successMessage" class="success-message">
+        תודה רבה! הפרטים נשלחו בהצלחה – נחזור אליך ממש בקרוב 
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('landingForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // מונע שליחה אמיתית (לדוגמה)
+
+      // כאן תוכל לשלוח את הנתונים לשרת, ל-Google Sheets, Make.com, Webhook וכו'
+      // לדוגמה פשוטה:
+      console.log({
+        שם_פרטי: form.firstName.value,
+        שם_משפחה: form.lastName.value,
+        טלפון: form.phone.value,
+        אימייל: form.email.value
+      });
+
+      // מציג הודעת הצלחה ומנקה את הטופס
+      successMessage.style.display = 'block';
+      form.style.display = 'none';
+
+      // אופציונלי: איפוס אחרי 5 שניות
+      // setTimeout(() => { form.reset(); form.style.display = 'block'; successMessage.style.display = 'none'; }, 5000);
+    });
+  </script>
+</body>
+</html>
